@@ -1,1 +1,1 @@
-ECHO is on.
+This is the final program for the data structures and algorithms course at WGU.
