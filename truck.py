@@ -9,4 +9,4 @@ class Truck:
         self.package_list = []
 
     def __repr__(self):
-        return repr(f"""truck number: {self.truck_number} departure time: {self.departure_time}""")
+        return repr(f"""truck number: {self.truck_number} departure time: {self.departure_time_from_hub}""")
