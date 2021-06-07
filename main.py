@@ -1,5 +1,5 @@
-from package_creator import create_packages
-from initial_text import show_initial_text
+from helpers.package_creator import create_packages
+from helpers.show_initial_text import show_initial_text
 from models.truck import Truck
 
 def main():
