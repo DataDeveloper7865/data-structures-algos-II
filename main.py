@@ -1,3 +1,4 @@
+from helpers.show_user_interface_cli import show_user_interface
 from helpers.package_creator import create_packages
 from helpers.show_initial_text import show_initial_text
 from models.truck import Truck
@@ -12,7 +13,6 @@ def main():
 
     # place packages in trucks
 
-    # show user interface
 
     truck_1 = Truck(1, "noon")
     truck_2 = Truck(2, "noon")
@@ -21,6 +21,9 @@ def main():
     print(truck_1)
     print(truck_2)
     print(truck_3)
+
+    # show user interface
+    show_user_interface()
 
 
 if __name__ == '__main__':
