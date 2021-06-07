@@ -1,6 +1,6 @@
 from package_creator import create_packages
 from initial_text import show_initial_text
-from truck import Truck
+from models.truck import Truck
 
 def main():
 

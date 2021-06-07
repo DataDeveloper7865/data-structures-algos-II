@@ -1,5 +1,5 @@
 import csv
-from package import Package
+from models.package import Package
 
 
 def create_packages():
