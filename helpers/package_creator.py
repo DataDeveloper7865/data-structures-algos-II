@@ -32,7 +32,7 @@ def create_packages(package_list, truck_1, truck_2, truck_3):
                 if 'Must' in new_package.special_notes or 'None' in new_package.special_notes:
                     truck_1.package_list.append(new_package)
 
-            if new_package.id == '14':
+            if new_package.package_id == '14':
                 truck_1.package_list.append(new_package)
 
             if 'Can only be' in new_package.special_notes or 'Delayed' in new_package.special_notes:
