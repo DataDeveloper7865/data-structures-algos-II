@@ -10,9 +10,9 @@ def main():
     show_initial_text()
 
     # instantiate trucks, accepts truck number and departure time
-    truck_1 = Truck(1, "noon")
-    truck_2 = Truck(2, "noon")
-    truck_3 = Truck(3, "noon")
+    truck_1 = Truck(1, "08:00:00")
+    truck_2 = Truck(2, "09:10:00")
+    truck_3 = Truck(3, "11:00:00")
 
     # instantiate hash map to hold values for fast lookup
     package_holder = HashMap()
