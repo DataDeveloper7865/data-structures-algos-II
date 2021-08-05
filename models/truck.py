@@ -18,6 +18,25 @@ class Truck:
         for package in self.package_list:
             print(package)
 
+    def deliver_packages(self):
+        return self.truck_number
+
+    # def deliver_packages(self, current_location = 0, total_distance = 0):
+    #     # if the list is empty return
+    #     # base case for recursive call
+    #     # return the total distance
+    #     if not len(self.package_list):
+    #         print(f"""Done deleivering for truck number: {self.truck_number} """)
+    #         return total_distance
+
+    #     # initial variables
+    #     smallest_distance = 50.0
+
+    #     # iterate through the packages list
+    #     # if the current smallest distance is 
+
+
+
 
     # def determine_shortest_path(self, current_location):
     #     if not len(self.package_list):
