@@ -10,13 +10,14 @@ def create_packages(package_list, truck_1, truck_2, truck_3):
         for row in read_csv:
             new_package = Package(
                 package_id = row[0],
-                address = row[1], 
-                city = row[2], 
+                address = row[1],
+                city = row[2],
                 state = row[3],
-                zip_code = row[4], 
+                zip_code = row[4],
                 deadline = row[5],
                 kilos = row[6],
-                special_notes = row[7]
+                special_notes = row[7],
+                delivery_time= ""
             )
 
             # TODO: fix package_list
