@@ -1,4 +1,5 @@
 from helpers.distance_calcs import get_current_distance, get_index_from_address, get_time, add_time
+from models.hash_table import HashTable
 
 class Truck:
 
