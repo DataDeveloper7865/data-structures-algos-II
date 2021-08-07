@@ -1,4 +1,4 @@
-class HashMap:
+class HashTable:
     def __init__(self, capacity=40):
         self.map = []
         for _ in range(capacity):
