@@ -1,69 +1,86 @@
-from helpers.distance_calcs import get_current_distance
-
+from helpers.distance_calcs import get_current_distance, get_index_from_address, get_time, add_time
 
 class Truck:
 
-    def __init__(self, truck_number, departure_time_from_hub):
-        self.departure_time_from_hub = departure_time_from_hub
+    # Truck class constructor
+    def __init__(self, truck_number, current_time):
+        self.current_time = current_time
         self.truck_number = truck_number
         self.package_list = []
         self.total_distance_traveled = 0
-        self.ordered_package_list = []
+        self.delivered_package_list = []
 
+    # repr method to print instance of each truck
     def __repr__(self):
-        return repr(f"""truck number: {self.truck_number} departure time: {self.departure_time_from_hub}""")
+        return repr(f"""truck number: {self.truck_number} departure time: {self.current_time}""")
 
+    # print each package of each truck
+    # O(n) -> Iterates over each package contained in list
     def show_packages(self):
         print(f""" Truck Number: {self.truck_number} contains the following packages""")
         for package in self.package_list:
             print(package)
 
-    def deliver_packages(self):
-        return self.truck_number
+    # Greedy Algorithm for delivery of packages
+    # Algorithm has 3 parts:
+    # 1) Base Case -> algorithm ends when there are no more packages in the list
+    # 2) Iterate through list to find the smallest distance
+    # 3) Iterate through list and pop the package from the list with smallest distance
+    #    update properties, calculate time and distance, and add it to the delivered
+    #    package list.
+    def deliver_packages(self, current_location = 0, total_distance = 0):
+        
+        # Base case for recursive call:
+        # If the list is empty return total distance
+        if not len(self.package_list):
+            print(f"""Done delivering for truck number: {self.truck_number} """)
+            print(f"""Total distance traveled: {self.total_distance_traveled} """)
+            return float(self.total_distance_traveled)
 
-    # def deliver_packages(self, current_location = 0, total_distance = 0):
-    #     # if the list is empty return
-    #     # base case for recursive call
-    #     # return the total distance
-    #     if not len(self.package_list):
-    #         print(f"""Done deleivering for truck number: {self.truck_number} """)
-    #         return total_distance
+        # initial variables
+        smallest_distance = 50.0
+        next_location = ''
 
-    #     # initial variables
-    #     smallest_distance = 50.0
+        # iterate through the packages list
+        # find the next location to travel to
+        # that is the smallest distance away
+        for package in self.package_list:
+            address_to_compare = package.get_address()
+            address_index = get_index_from_address(address_to_compare)
+            if get_current_distance(current_location, address_index) <= smallest_distance:
+                smallest_distance = get_current_distance(current_location, address_index)
+                next_location = address_to_compare
 
-    #     # iterate through the packages list
-    #     # if the current smallest distance is 
-
-
-
-
-    # def determine_shortest_path(self, current_location):
-    #     if not len(self.package_list):
-    #         return self.package_list
-
-    #     smallest_distance = 50.0
-    #     location = 0
-    #     total_distance = 0
-
-
-        # 1. iterate through package list
-        # 2. if the distance from the current location to the next address is smaller,
-        #    set the smallest distance equal to the current distance being compared
+        # iterate through the list again
         # for package in self.package_list:
-        #     address_to_compare = package.address
-        #     if get_current_distance(current_location, address_to_compare) <= smallest_distance:
-        #         smallest_distance = get_current_distance(
-        #             current_location, address_to_compare)
-        #         location = address_to_compare
+        for idx, package in enumerate(self.package_list):
 
+            address_to_compare = package.address
+            address_index = get_index_from_address(address_to_compare)
+            package_distance = get_current_distance(current_location, address_index)
 
-        # TODO: Implement function
-        # for package in self.package_list:
-        #     if get_current_distance(current_location, package.address) == smallest_distance:
-        #         self.ordered_package_list.append(package)
-        #         self.package_list.pop(package)
-        #         current_location = location
-        #         total_distance += smallest_distance
-        #         determine_shortest_path(self.package_list, current_location)
+            # if the package matches the next location
+            if package_distance == smallest_distance:
+                # pop it from the truck list and update the package properties
+                # popped_package = self.package_list.pop(package)
+                popped_package = self.package_list.pop(idx)
+
+                # 1. calculate the distance traveled and update property on trucklist
+                self.total_distance_traveled += package_distance
+
+                # 2. update the departure time in package
+                #    & update the current time for truck
+                time_taken = get_time(package_distance)
+                new_delivered_time = add_time(self.current_time, time_taken)
+                self.current_time = new_delivered_time
+
+                # set the delivery time of the delivered package
+                popped_package.set_delivered_time(new_delivered_time)
+
+                # 3. Add the new popped package to the delivered package list
+                self.delivered_package_list.append(popped_package)
+
+                # 4. Recursively call the function again.
+                #    Until list is empty.
+                self.deliver_packages(current_location = address_index, total_distance = self.total_distance_traveled)
 
