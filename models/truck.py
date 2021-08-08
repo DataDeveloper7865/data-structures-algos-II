@@ -10,6 +10,7 @@ class Truck:
         self.package_list = []
         self.total_distance_traveled = 0
         self.delivered_package_list = []
+        self.delivered_package_hash = HashTable()
 
     # repr method to print instance of each truck
     def __repr__(self):
@@ -80,6 +81,7 @@ class Truck:
 
                 # 3. Add the new popped package to the delivered package list
                 self.delivered_package_list.append(popped_package)
+                self.delivered_package_hash.insert_value_into_hash_table(popped_package.package_id, popped_package)
 
                 # 4. Recursively call the function again.
                 #    Until list is empty.
