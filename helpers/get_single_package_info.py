@@ -18,6 +18,7 @@ def get_single_package_info(truck_1, truck_2, truck_3):
 def return_package_info(truck, id):
     for package in truck.delivered_package_list:
         if package.package_id == id:
-            print(package)
+            package_info = truck.delivered_package_hash.get_value(id)
+            print(package_info)
             return
     return
