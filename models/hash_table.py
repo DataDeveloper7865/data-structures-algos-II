@@ -34,7 +34,7 @@ class HashTable:
                     print(pair[1])
                     return True
         else:
-            print('Error with the following key: ' + key)
+            print('Key not found: ' + key)
 
     # Get a value from hash table -> O(n)
     def get_value(self, key):
@@ -56,8 +56,3 @@ class HashTable:
                 self.map[key_hash].pop(i)
                 return True
         return False
-
-class HashTableEntry:
-    def __init__(self, key, item):
-        self.key = key
-        self.item = item
