@@ -2,7 +2,7 @@ from helpers.show_user_interface_cli import show_user_interface
 from helpers.package_creator import create_packages
 from helpers.show_initial_text import show_initial_text
 from models.truck import Truck
-from models.hash_table import HashMap
+from models.hash_table import HashTable
 
 # main method of program
 def main():
@@ -25,7 +25,7 @@ def main():
     truck_3 = Truck(3, truck_3_start_time)
 
     # instantiate hash map to hold values for fast lookup
-    packages = HashMap()
+    packages = HashTable()
 
     # 1. read in excel data
     # 2. create packages
